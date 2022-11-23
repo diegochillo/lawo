@@ -54,6 +54,7 @@ header h1 {
 }
 section p {
 	line-height: 1.6em;
+	margin-bottom: 10px;
 }
 .post-image img {
 	display: block;
