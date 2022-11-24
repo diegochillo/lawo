@@ -69,7 +69,7 @@
                   <div class="post-text">
                      <h1>The Project</h1>
                      <img src="img/kre/fourmel-hero.png" alt="OuLiPo">
-                     <h2>eXtreme Design</h2>
+                     <h2>eXtreme Design a Brief Introduction</h2>
                      <p>
                        Ontology Design Patterns are building blocks for ontologies. They offer answers to common modeling problems. Their use favors the ontology's reusability and ensures a high degree of overall ontology quality.
                      </p>
@@ -88,8 +88,10 @@
                         User stories lead to requirements collection. A user story is a series of phrases that illustrates the types of facts that the final knowledge graph must encode.
                     </p>
                     <p>
-                        User stories can have a priority level, a title, and an ID attached to them. The title or ID can be used to describe potential narrative dependencies, which means that the analysis of one tale is dependent upon the analysis of other stories. The order in which stories are handled depends on their priority level.<br/><br/>
+                        User stories can have a priority level, a title, and an ID attached to them. The title or ID can be used to describe potential narrative dependencies, which means that the analysis of one tale is dependent upon the analysis of other stories. The order in which stories are handled depends on their priority level.
                     </p>
+                    <br/>
+
                     <h3>2.Competency Questons (CQ)</h3>
                     <p>
                         To generalize a user narrative is to determine the key ideas it illustrates. Generalizing the user stories yields one or more competency questions (CQs). CQs are the natural language versions of the queries applicable to the resulting knowledge graph.
@@ -97,6 +99,38 @@
                     <p>
                         Along with CQs, it is possible to identify general constraints that may express possible inferences or other rules that apply to the story concepts. General constraints expressed in natural language correspond to formal axioms the ontology will include.
                     </p>
+                    <br/>
+
+                    <h3>3. Matching CQs to ODPs</h3>
+                    <p>
+                      Matching CQs to Ontology Design Patterns (ODPs) is a crucial step in XD. A cohesive group of CQs, or CQs dealing with the same modeling difficulties (e.g. material transformation), is chosen at each iteration.
+                    </p>
+                    <p>
+                      The analysis of potential existing ODPs identifies the best candidate for ontology implementation. They may be found in catalogs like the ODP portal and the University of Manchester's catalog. When an ODP is correctly specified and documented, it provides the corresponding competency questions that fully characterize the modeling issue it solves.
+                    </p>
+                    <p>
+                      A designer can determine if an ODP fits the available CQs by contrasting them with the ODP's CQs. ODP's CQs are frequently broader than an ontology project's domain-specific CQs. In this situation, the designer will broaden CQs further to determine whether the candidate ODP may be reused given a vocabulary specialization.
+                    </p>
+                    <br/>
+
+                    <h3>4. Testing and Integration</h3>
+                    <p>
+                      The XD development process is test-driven and unit tested. In order to construct sample triples that are expected to either result in consistency/coherence problems or inferences, generic constraints are employed to transform CQs into potential SPARQL queries.
+                      Unit tests consist of OWL/RDF files and SPARQL queries that are annotated with the intended outcomes.
+                    </p>
+                    <p>
+                      Our “story” is the description of the story-making machine.
+                    </p>
+                    <br/><br/>
+
+                    <h2>First Step the Knight’s Move</h2>
+                    <h3>Text</h3>
+                    <div>
+                      <p>
+                        The novel unfolds on a 10x10 grid, where each square (cell) is a place and a chapter. Each chapter tells the story of a main character. The sequence of the cells is predefined and based on the chess knight piece move, with the requirement that it cannot step two times on the same cell. Cell A1 is skipped.
+                      </p>
+                    </div>
+
                   </div>
                </article>
                <!-- AD REGION -->
