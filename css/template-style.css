@@ -348,3 +348,12 @@ address p {
 #article-section li {
 	margin-bottom: 5px;
 }
+
+figcaption {
+	color:gray;
+	font-size: smaller;
+}
+
+img#cahier {
+	margin-bottom: 0px!important;
+}
