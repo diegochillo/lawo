@@ -5,9 +5,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix lawo: <https://lawo.github.io/lawontology#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sequence: <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl> .
 @base <https://lawo.github.io/lawontology> .
 
 <https://lawo.github.io/lawontology> rdf:type owl:Ontology ;
+                                      owl:imports <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl> ;
                                       rdfs:comment "An ontology based on George Perec's Life a User's Manual Cahier des Charges" .
 
 #################################################################
@@ -49,6 +51,18 @@ lawo:hasConstraint rdf:type owl:ObjectProperty ;
                    rdfs:range lawo:Constraint .
 
 
+###  https://lawo.github.io/lawontology#hasMainCharacter
+lawo:hasMainCharacter rdf:type owl:ObjectProperty ;
+                      rdfs:domain lawo:Place ;
+                      rdfs:range lawo:Character .
+
+
+###  https://lawo.github.io/lawontology#hasPlace
+lawo:hasPlace rdf:type owl:ObjectProperty ;
+              rdfs:domain lawo:Cell ;
+              rdfs:range lawo:Place .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -72,12 +86,22 @@ lawo:ChapterNumber rdf:type owl:DatatypeProperty ;
 
 ###  https://lawo.github.io/lawontology#Cell
 lawo:Cell rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty lawo:hasChapter ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass lawo:Chapter
+                          ] ;
           rdfs:comment "All the cells of the 10x10 grid that can be superimposed to the main location" ;
           rdfs:label "Cell" .
 
 
 ###  https://lawo.github.io/lawontology#Chapter
 lawo:Chapter rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty lawo:hasCell ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass lawo:Cell
+                             ] ;
              rdfs:comment "All the chapters of the novel" ;
              rdfs:label "Chapter" .
 
@@ -91,6 +115,16 @@ lawo:Character rdf:type owl:Class ;
 ###  https://lawo.github.io/lawontology#Constraint
 lawo:Constraint rdf:type owl:Class ;
                 rdfs:label "Constraints" .
+
+
+###  https://lawo.github.io/lawontology#Place
+lawo:Place rdf:type owl:Class ;
+           rdfs:subClassOf lawo:Topic ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty lawo:hasMainCharacter ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass lawo:Character
+                           ] .
 
 
 ###  https://lawo.github.io/lawontology#Topic
@@ -386,7 +420,8 @@ lawo:A4 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#A5
 lawo:A5 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
-        lawo:hasChapter lawo:Chapter_99 .
+        lawo:hasChapter lawo:Chapter_99 ;
+        lawo:hasPlace lawo:Place_01 .
 
 
 ###  https://lawo.github.io/lawontology#A6
@@ -446,7 +481,8 @@ lawo:B4 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#B5
 lawo:B5 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
-        lawo:hasChapter lawo:Chapter_70 .
+        lawo:hasChapter lawo:Chapter_70 ;
+        lawo:hasPlace lawo:Place_01 .
 
 
 ###  https://lawo.github.io/lawontology#B6
@@ -506,7 +542,8 @@ lawo:C4 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#C5
 lawo:C5 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
-        lawo:hasChapter lawo:Chapter_26 .
+        lawo:hasChapter lawo:Chapter_26 ;
+        lawo:hasPlace lawo:Place_01 .
 
 
 ###  https://lawo.github.io/lawontology#C6
@@ -5384,6 +5421,24 @@ lawo:Chapter_99 rdf:type owl:NamedIndividual ,
                 lawo:ChapterNumber 99 .
 
 
+###  https://lawo.github.io/lawontology#Character_01
+lawo:Character_01 rdf:type owl:NamedIndividual ,
+                           lawo:Character ;
+                  rdfs:label "Percival Bartlebooth" .
+
+
+###  https://lawo.github.io/lawontology#Character_02
+lawo:Character_02 rdf:type owl:NamedIndividual ,
+                           lawo:Character ;
+                  rdfs:label "Serge Valene" .
+
+
+###  https://lawo.github.io/lawontology#Character_03
+lawo:Character_03 rdf:type owl:NamedIndividual ,
+                           lawo:Character ;
+                  rdfs:label "Gaspard Winckler" .
+
+
 ###  https://lawo.github.io/lawontology#D1
 lawo:D1 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
@@ -5417,7 +5472,8 @@ lawo:D4 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#D5
 lawo:D5 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
-        lawo:hasChapter lawo:Chapter_80 .
+        lawo:hasChapter lawo:Chapter_80 ;
+        lawo:hasPlace lawo:Place_01 .
 
 
 ###  https://lawo.github.io/lawontology#D6
@@ -5477,7 +5533,8 @@ lawo:E4 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#E5
 lawo:E5 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
-        lawo:hasChapter lawo:Chapter_87 .
+        lawo:hasChapter lawo:Chapter_87 ;
+        lawo:hasPlace lawo:Place_01 .
 
 
 ###  https://lawo.github.io/lawontology#E6
@@ -5537,6 +5594,7 @@ lawo:F4 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#F5
 lawo:F5 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
+        <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes> lawo:H4 ;
         lawo:hasChapter lawo:Chapter_01 .
 
 
@@ -5651,6 +5709,8 @@ lawo:H3 rdf:type owl:NamedIndividual ,
 ###  https://lawo.github.io/lawontology#H4
 lawo:H4 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
+        <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> lawo:F5 ;
+        <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes> lawo:J5 ;
         lawo:hasChapter lawo:Chapter_02 .
 
 
@@ -5802,6 +5862,13 @@ lawo:J8 rdf:type owl:NamedIndividual ,
 lawo:J9 rdf:type owl:NamedIndividual ,
                  lawo:Cell ;
         lawo:hasChapter lawo:Chapter_51 .
+
+
+###  https://lawo.github.io/lawontology#Place_01
+lawo:Place_01 rdf:type owl:NamedIndividual ,
+                       lawo:Place ;
+              lawo:hasMainCharacter lawo:Character_01 ;
+              rdfs:label "Bartlebooth's" .
 
 
 ###  https://lawo.github.io/lawontology#0A_a
