@@ -312,6 +312,7 @@
       <div id="sparql-01" style="display:none;">
         <div class="modalbox">
           <h3>CQ: What is the starting cell?</h3>
+          <div class="codebox">
           <code>
             PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
             <br/>
@@ -320,7 +321,7 @@
             		&nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasChapter ?chap .<br/>
             		&nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:ChapterNumber 1 .<br/>
             	&nbsp;&nbsp;}<br/>
-          </code>
+          </code></div>
           <div class="query-result">
             <strong>Result:</strong> cell = F5<br/>
           </div>
@@ -334,6 +335,7 @@
           <h3>CQ: What is the ending cell?</h3>
 
           <p>If you know that chapters are 99:<br/><br/></p>
+          <div class="codebox">
           <code>
             PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
             <br/>
@@ -342,12 +344,13 @@
             		&nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasChapter ?chap .<br/>
             		&nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:ChapterNumber 99 .<br/>
             	&nbsp;&nbsp;}<br/>
-          </code>
+          </code></div>
           <div class="query-result">
             <strong>Result:</strong> cell = A5<br/>
           </div>
 
           <p>If you don't know how many chapters there are:<br/><br/></p>
+          <div class="codebox">
           <code>
             PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
             <br/>
@@ -359,7 +362,7 @@
             		&nbsp;&nbsp;&nbsp;&nbsp;OPTIONAL {?nextchap lawo:ChapterNumber ?cnpu . }<br/>
             		&nbsp;&nbsp;&nbsp;&nbsp;FILTER (!bound(?nextchap))<br/>
 	            &nbsp;&nbsp;}
-          </code>
+          </code></div>
           <div class="query-result">
             <strong>Result:</strong> cell = A5<br/>
             cnpu = “100”^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
