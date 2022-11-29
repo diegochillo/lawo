@@ -1,6 +1,7 @@
 body {
 	background: none repeat scroll 0 0 #0b192f;
-	color: #fff;
+	/* color: #fff; */
+	color: #555;
 	font-family: roboto;
 	font-weight: 300;
 }
@@ -356,4 +357,29 @@ figcaption {
 
 img#cahier {
 	margin-bottom: 0px!important;
+}
+
+
+.modalbox{
+	padding:10px;
+	color:#555;
+}
+
+.sparql-link{
+	font-weight:700;
+	color:#C5285A!important;
+}
+
+.modalbox code{
+	font-size: larger;
+}
+
+.modalbox h3{
+	margin-bottom:20px;
+}
+
+.query-result{
+	margin-top:10px;
+	margin-bottom:10px;
+	text-align:right;
 }
