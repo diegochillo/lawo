@@ -205,8 +205,8 @@
                             <li>What place is described in chapter 1? (Dans l'escalier) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-02">SPARQL Query</a></li>
                             <li>What is the ending cell? (A5) (=What cell has no next cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-03">SPARQL Query</a></li>
                             <li>What place does the last chapter describe? (Bartlebooth's) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-04">SPARQL Query</a></li>
-                            <li>What cells have no corresponding chapter? (A1)</li>
-                            <li>What cell and chapter follow the position J7? I9, chapter 6 (= What is the next cell of a given cell?)</li>
+                            <li>What cells have no corresponding chapter? (A1) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-05">SPARQL Query</a></li>
+                            <li>What cell and chapter follow the position J7? I9, chapter 6 (= What is the next cell of a given cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="600px" href="#sparql-06">SPARQL Query</a></li>
                             <li>What place is cell H8? (Winckler) (=What place corresponds to a specific cell?)</li>
                             <li>What apartment follows chapter 25? Bartlebooth</li>
                         </ol>
@@ -420,6 +420,53 @@
              cell = A5<br/>
              chap = Chapter_99<br/>
              place_label = "Bartlebooth"<br/>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="sparql-05" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What cells have no corresponding chapters?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;<br/>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            <br/>
+            SELECT ?cell<br/>
+	          &nbsp;&nbsp;WHERE {<br/>
+		        &nbsp;&nbsp;&nbsp;&nbsp;?cell a lawo:Cell .<br/>
+		        &nbsp;&nbsp;&nbsp;&nbsp;OPTIONAL { ?cell lawo:hasChapter ?chap }<br/>
+   		      &nbsp;&nbsp;&nbsp;&nbsp;FILTER( !bound( ?chap ) )<br/>
+	          &nbsp;&nbsp;}<br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+             cell = A1<br/>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="sparql-06" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What cell and chapter follow the position J7?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX sequence: &lt;http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#&gt;<br/>
+            <br/><br/>
+            SELECT ?cell ?chapter<br/>
+            &nbsp;&nbsp;WHERE {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?cell sequence:directlyFollows lawo:J7 .<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasChapter ?chapter .<br/>
+            &nbsp;&nbsp;}<br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+             cell = I9<br/>
+             chapter = Chapter_06<br/>
           </div>
         </div>
       </div>
