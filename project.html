@@ -297,12 +297,11 @@
 
                       <h3>Generic Use Cases</h3>
 
-                      For this step we identified the ODP “List” from ontologydesignpatterns.org:<br/>
-                      <a href="http://ontologydesignpatterns.org/wiki/Submissions:List">http://ontologydesignpatterns.org/wiki/Submissions:List</a>
+                      <p>For this step we identified the ODP <strong>“List”</strong> from ontologydesignpatterns.org:<br/>
+                      <a href="http://ontologydesignpatterns.org/wiki/Submissions:List">http://ontologydesignpatterns.org/wiki/Submissions:List</a></p>
 
-                      Initially, we defined each constraint as a class, and each value as a named individual of that class. Then, using the “List” ODP, we converted each class into an individual of the class “List” and connected the single values with the object properties “itemOf”, “firstItemOf”, “lastItemOf”.
-                      It is not possible to define the list of lists, that is the list of constraints, as a l (the content of the first column of the Cahier des Charges), is also an ordered list.
-
+                      <p>Initially, we defined each constraint as a class, and each value as a named individual of that class. Then, using the “List” ODP, we converted each constraint into an individual of the class “List” and connected the related values with the object properties “itemOf”, “firstItemOf”, “lastItemOf”.</p>
+                      <p>The "list of lists", that is the list of constraints (the first column of the Cahier des Charges), cannot be defined as a list itself, because a list item cannot be at the same time a list, given the explicit disjunction of the two classes in the "List" ODP.</p>
 
 
                       <h3>Unit Tests</h3>
