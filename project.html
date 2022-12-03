@@ -22,6 +22,48 @@
       <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
+
+      <!--
+      <script type="text/javascript">
+        window.onload = function () {
+          var toc = "";
+          var level = 0;
+
+          document.getElementById("contents").innerHTML =
+              document.getElementById("contents").innerHTML.replace(
+                  /<h([\d])>([^<]+)<\/h([\d])>/gi,
+                  function (str, openLevel, titleText, closeLevel) {
+                      if (openLevel != closeLevel) {
+                          return str;
+                      }
+
+                      if (openLevel > level) {
+                          toc += (new Array(openLevel - level + 1)).join("<ul class='toclist'>");
+                      } else if (openLevel < level) {
+                          toc += (new Array(level - openLevel + 1)).join("</ul>");
+                      }
+
+                      level = parseInt(openLevel);
+
+                      var anchor = titleText.replace(/ /g, "_");
+                      toc += "<li class='toclist'><a href=\"#" + anchor + "\">" + titleText
+                          + "</a></li>";
+
+                      return "<h" + openLevel + "><a name=\"" + anchor + "\">"
+                          + titleText + "</a></h" + closeLevel + ">";
+                  }
+              );
+
+          if (level) {
+              toc += (new Array(level + 1)).join("</ul>");
+          }
+
+          document.getElementById("toc").innerHTML += toc;
+        };
+      </script>
+    -->
+
+
    </head>
    <body class="size-1140">
       <!-- TOP NAV WITH LOGO -->
@@ -135,7 +177,7 @@
                       <br/><br/>
 
                       <h2>First Step the Knight’s Move</h2>
-                      <h3>Text</h3>
+                      <h3>The Text</h3>
                       <div>
                         <p>
                           The novel unfolds on a 10x10 grid, where each square (cell) is a place and a chapter. Each chapter tells the story of a main character. The sequence of the cells is predefined and based on the chess knight piece move, with the requirement that it cannot step two times on the same cell. <br/>Cell A1 is skipped.
@@ -214,12 +256,13 @@
                               <li>What place is cell H8? (Winckler) (=What place corresponds to a specific cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-07">SPARQL Query</a></li>
                               <li>What chapters are set in the caves? 33, 67, 72, 76, 91 (=What chapters are set in a specific place?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-08">SPARQL Query</a></li>
                           </ol>
+                          <br/>
                         </p>
 
                       </div>
 
-                      <h2>Second Step: The Cahier des Charges</h2>
-                      <h3>Text</h3>
+                      <h2>Second Step The Cahier des Charges</h2>
+                      <h3>The Text</h3>
                       <div>
                         <p>
                           There's a table of constraints made of 21 rows and 10 columns. Each row is splitted in 2 categories, one identified by an uppercase letter and one by the corresponding lowercase. Each category has a name and a code. For each of the 42 categories there are 10 arbitrary values.
@@ -229,8 +272,8 @@
                       <h3>Competency Questions</h3>
                       <div>
                         <ol>
-                          <li>What is the name of the first category of contraints? (position) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-09">SPARQL Query</a></li>
-                          <li>What is the name of the sixteenth category? (divers) - - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-10">SPARQL Query</a></li>
+                          <li>What is the name of the first category of contraints? (position)</li>
+                          <li>What is the name of the sixteenth category? (divers)</li>
                           <li>What is the third value of the tenth category? (parquet à bâtons rompus)</li>
                           <li>What are the values of the twentieth category? (uni,	à rayures, à pois, à carreaux, écossais, patchwork, à ramages, à fleurs, “imprimés, à motif”, brodé)</li>
                         </ol>
@@ -239,6 +282,17 @@
 
                       <h3>Elements</h3>
 
+                      <h3>Generic Use Cases</h3>
+
+                      <h3>Unit Tests</h3>
+                      <div>
+                        <ol>
+                          <li>What is the name of the first category of contraints? (position) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-09">SPARQL Query</a></li>
+                          <li>What is the name of the sixteenth category? (divers) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-10">SPARQL Query</a></li>
+                          <li>What is the third value of the tenth category? (parquet à bâtons rompus)</li>
+                          <li>What are the values of the twentieth category? (uni,	à rayures, à pois, à carreaux, écossais, patchwork, à ramages, à fleurs, “imprimés, à motif”, brodé)</li>
+                        </ol>
+                      </div>
 
 
                     </div>
@@ -613,43 +667,8 @@
 
 
 
-      <script type="text/javascript">
-        window.onload = function () {
-          var toc = "";
-          var level = 0;
 
-          document.getElementById("contents").innerHTML =
-              document.getElementById("contents").innerHTML.replace(
-                  /<h([\d])>([^<]+)<\/h([\d])>/gi,
-                  function (str, openLevel, titleText, closeLevel) {
-                      if (openLevel != closeLevel) {
-                          return str;
-                      }
 
-                      if (openLevel > level) {
-                          toc += (new Array(openLevel - level + 1)).join("<ul class='toclist'>");
-                      } else if (openLevel < level) {
-                          toc += (new Array(level - openLevel + 1)).join("</ul>");
-                      }
-
-                      level = parseInt(openLevel);
-
-                      var anchor = titleText.replace(/ /g, "_");
-                      toc += "<li class='toclist'><a href=\"#" + anchor + "\">" + titleText
-                          + "</a></li>";
-
-                      return "<h" + openLevel + "><a name=\"" + anchor + "\">"
-                          + titleText + "</a></h" + closeLevel + ">";
-                  }
-              );
-
-          if (level) {
-              toc += (new Array(level + 1)).join("</ul>");
-          }
-
-          document.getElementById("toc").innerHTML += toc;
-        };
-      </script>
 
    </body>
 </html>
