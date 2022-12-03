@@ -208,7 +208,7 @@
                             <li>What cells have no corresponding chapter? (A1) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-05">SPARQL Query</a></li>
                             <li>What cell and chapter follow the position J7? I9, chapter 6 (= What is the next cell of a given cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="600px" href="#sparql-06">SPARQL Query</a></li>
                             <li>What place is cell H8? (Winckler) (=What place corresponds to a specific cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-07">SPARQL Query</a></li>
-                            <li>What chapters are set in the caves? 33, 67, 72, 76, 91 (=What chapters are set in a specific place?)</li>
+                            <li>What chapters are set in the caves? 33, 67, 72, 76, 91 (=What chapters are set in a specific place?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-08">SPARQL Query</a></li>
                         </ol>
                       </p>
                       <p>
@@ -478,14 +478,14 @@
           <h3>CQ: What place is cell H8?</h3>
           <div class="codebox">
           <code>
-            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br/>
             PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
             <br/><br/>
-            SELECT ?place_label
-            	&nbsp;&nbsp;WHERE {
-            		&nbsp;&nbsp;&nbsp;&nbsp;lawo:H8 lawo:hasPlace ?place .
-            		&nbsp;&nbsp;&nbsp;&nbsp;?place rdfs:label ?place_label .
-            	&nbsp;&nbsp;}
+            SELECT ?place_label<br/>
+            	&nbsp;&nbsp;WHERE {<br/>
+            		&nbsp;&nbsp;&nbsp;&nbsp;lawo:H8 lawo:hasPlace ?place .<br/>
+            		&nbsp;&nbsp;&nbsp;&nbsp;?place rdfs:label ?place_label .<br/>
+            	&nbsp;&nbsp;}<br/>
           </code></div>
           <div class="query-result">
             <strong>Result:</strong><br/>
@@ -494,6 +494,33 @@
         </div>
       </div>
 
+
+
+      <div id="sparql-08" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What chapters are set in the caves?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            <br/>
+            SELECT ?chapnum<br/>
+            	&nbsp;&nbsp;WHERE {<br/>
+            		&nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasPlace lawo:Place_17 ;<br/>
+            		          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:hasChapter ?chap .<br/>
+            		&nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:ChapterNumber ?chapnum .<br/>
+            	&nbsp;&nbsp;}<br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+            chapnum =<br/>
+            "72"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "67"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "33"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "91"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "76"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+          </div>
+        </div>
+      </div>
 
       <script type="text/javascript" src="venobox/venobox.min.js"></script>
       <script type="text/javascript">
