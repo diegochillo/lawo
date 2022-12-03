@@ -267,7 +267,7 @@
                           <li>What is the name of the first contraint? (position) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-09">SPARQL Query</a></li>
                           <li>What is the name of the sixteenth constraint? (divers) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-10">SPARQL Query</a></li>
                           <li>What is the third value of the tenth category? (parquet à bâtons rompus) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-11">SPARQL Query</a></li>
-                          <li>What are the values of the twentieth category? (uni,	à rayures, à pois, à carreaux, écossais, patchwork, à ramages, à fleurs, “imprimés, à motif”, brodé)</li>
+                          <li>What are the values of the twentieth category? (uni,	à rayures, à pois, à carreaux, écossais, patchwork, à ramages, à fleurs, “imprimés, à motif”, brodé)  - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-12">SPARQL Query</a></li>
                         </ol>
                       </div>
 
@@ -672,6 +672,72 @@
           </div>
         </div>
       </div>
+
+
+
+      <div id="sparql-12" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What are the values of the twentieth category?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br/>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX sequence: &lt;http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#&gt;<br/>
+            PREFIX list: &lt;http://www.ontologydesignpatterns.org/cp/owl/list.owl#&gt;<br/>
+            PREFIX bag: &lt;http://www.ontologydesignpatterns.org/cp/owl/bag.owl#&gt;<br/>
+            <br/>
+            SELECT ?value_label<br/>
+            &nbsp;&nbsp;WHERE {<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?firstcat a lawo:Constraint .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;OPTIONAL { ?firstcat sequence:directlyFollows ?cat }<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;FILTER( !bound( ?cat ) )<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat2 sequence:directlyFollows ?firstcat .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat3 sequence:directlyFollows ?cat2 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat4 sequence:directlyFollows ?cat3 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat5 sequence:directlyFollows ?cat4 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat6 sequence:directlyFollows ?cat5 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat7 sequence:directlyFollows ?cat6 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat8 sequence:directlyFollows ?cat7 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat9 sequence:directlyFollows ?cat8 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat10 sequence:directlyFollows ?cat9 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat11 sequence:directlyFollows ?cat10 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat12 sequence:directlyFollows ?cat11 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat13 sequence:directlyFollows ?cat12 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat14 sequence:directlyFollows ?cat13 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat15 sequence:directlyFollows ?cat14 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat16 sequence:directlyFollows ?cat15 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat17 sequence:directlyFollows ?cat16 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat18 sequence:directlyFollows ?cat17 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat19 sequence:directlyFollows ?cat18 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?cat20 sequence:directlyFollows ?cat19 .<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{?value a lawo:ConstraintValue ;<br/>
+              	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bag:itemOf ?cat20 . } UNION<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{?value list:firstItemOf ?cat20 . } UNION<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{?value list:lastItemOf ?cat20 . }<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;?value rdfs:label ?value_label .<br/>
+            &nbsp;&nbsp;}<br/>
+            <br/>
+          ORDER BY ?value<br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Results:</strong><br/>
+            value_label =
+            "uni",
+            "à rayures",
+            "à pois",
+            "à carreaux",
+            "écossais",
+            "patchwork",
+            "à ramages",
+            "à fleurs",
+            "imprimés, à motif",
+            "brodé"<br/>
+          </div>
+        </div>
+      </div>
+
 
 
 
