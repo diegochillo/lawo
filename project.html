@@ -211,9 +211,6 @@
                             <li>What chapters are set in the caves? 33, 67, 72, 76, 91 (=What chapters are set in a specific place?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-08">SPARQL Query</a></li>
                         </ol>
                       </p>
-                      <p>
-                        Even if we have a connection between cells and chapters we can use to determine the sequence of cells (given that the sequence of chapters is incremental), we integrated this ontology for faster data extraction.
-                      </p>
 
                     </div>
 
@@ -228,10 +225,10 @@
                     <h3>Competency Questions</h3>
                     <div>
                       <ol>
-                        <li>What is the name of the first category?</li>
-                        <li>What is the name of the sixteenth category?</li>
-                        <li>What is the third value of the tenth category?</li>
-                        <li>What are the values of the twentieth category?</li>
+                        <li>What is the name of the first category of contraints? (position) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-09">SPARQL Query</a></li>
+                        <li>What is the name of the sixteenth category? (divers)</li>
+                        <li>What is the third value of the tenth category? (parquet à bâtons rompus)</li>
+                        <li>What are the values of the twentieth category? (uni,	à rayures, à pois, à carreaux, écossais, patchwork, à ramages, à fleurs, “imprimés, à motif”, brodé)</li>
                       </ol>
                     </div>
 
@@ -521,6 +518,32 @@
           </div>
         </div>
       </div>
+
+
+      <div id="sparql-09" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What is the name of the first category of constraints?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX sequence: &lt;http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#&gt;<br/>
+            <br/>
+            SELECT ?firstcat_label<br/>
+            	&nbsp;&nbsp;WHERE {<br/>
+            		&nbsp;&nbsp;&nbsp;&nbsp;?firstcat a lawo:Constraint .<br/>
+                		&nbsp;&nbsp;&nbsp;&nbsp;OPTIONAL { ?firstcat sequence:directlyFollows ?cat }<br/>
+                		&nbsp;&nbsp;&nbsp;&nbsp;FILTER( !bound( ?cat ) )<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;?firstcat rdfs:label ?firstcat_label .<br/>
+              &nbsp;&nbsp;}<br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+            firstcat = "position"<br/>
+          </div>
+        </div>
+      </div>
+
+
 
       <script type="text/javascript" src="venobox/venobox.min.js"></script>
       <script type="text/javascript">
