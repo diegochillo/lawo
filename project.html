@@ -23,46 +23,6 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
 
-      <!--
-      <script type="text/javascript">
-        window.onload = function () {
-          var toc = "";
-          var level = 0;
-
-          document.getElementById("contents").innerHTML =
-              document.getElementById("contents").innerHTML.replace(
-                  /<h([\d])>([^<]+)<\/h([\d])>/gi,
-                  function (str, openLevel, titleText, closeLevel) {
-                      if (openLevel != closeLevel) {
-                          return str;
-                      }
-
-                      if (openLevel > level) {
-                          toc += (new Array(openLevel - level + 1)).join("<ul class='toclist'>");
-                      } else if (openLevel < level) {
-                          toc += (new Array(level - openLevel + 1)).join("</ul>");
-                      }
-
-                      level = parseInt(openLevel);
-
-                      var anchor = titleText.replace(/ /g, "_");
-                      toc += "<li class='toclist'><a href=\"#" + anchor + "\">" + titleText
-                          + "</a></li>";
-
-                      return "<h" + openLevel + "><a name=\"" + anchor + "\">"
-                          + titleText + "</a></h" + closeLevel + ">";
-                  }
-              );
-
-          if (level) {
-              toc += (new Array(level + 1)).join("</ul>");
-          }
-
-          document.getElementById("toc").innerHTML += toc;
-        };
-      </script>
-    -->
-
 
    </head>
    <body class="size-1140">
@@ -112,9 +72,6 @@
          <div class="margin">
             <!-- ARTICLES -->
             <div class="s-12 l-9">
-
-              <!-- Questo serve per la Table of Contents -->
-              <div id="contents">
 
                  <!-- ARTICLE 1 -->
                  <article class="margin-bottom">
@@ -318,7 +275,6 @@
                     </div>
                  </article>
 
-              </div>  <!-- Fine dei contenuti per la Table of Contents -->
 
                <!-- AD REGION -->
                <div class="line">
@@ -367,7 +323,8 @@
                   </div>
                 -->
                   <div id="toc" class="aside-block margin-bottom">
-                    <h3>Table of Contents</h3>
+                    <h2>Table of Contents</h2>
+                    <ul data-toc="section#article-section" data-toc-headings="h2,h3,h4" class="toclist"></ul>
                   </div>
                   <!-- AD REGION -->
                   <div class="advertising margin-bottom">
@@ -726,7 +683,7 @@
           });
       </script>
 
-
+      <script type="text/javascript" src="js/jquery.toc/jquery.toc.min.js"></script>
 
 
 

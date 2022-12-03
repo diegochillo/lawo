@@ -397,6 +397,6 @@ ul.toclist {
 	padding-top:10px!important;
 }
 
-li.toclist {
-
+ul.toclist > li{
+	margin-top:20px;
 }
