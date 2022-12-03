@@ -207,8 +207,8 @@
                             <li>What place does the last chapter describe? (Bartlebooth's) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-04">SPARQL Query</a></li>
                             <li>What cells have no corresponding chapter? (A1) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-05">SPARQL Query</a></li>
                             <li>What cell and chapter follow the position J7? I9, chapter 6 (= What is the next cell of a given cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="600px" href="#sparql-06">SPARQL Query</a></li>
-                            <li>What place is cell H8? (Winckler) (=What place corresponds to a specific cell?)</li>
-                            <li>What apartment follows chapter 25? Bartlebooth</li>
+                            <li>What place is cell H8? (Winckler) (=What place corresponds to a specific cell?) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="550px" href="#sparql-07">SPARQL Query</a></li>
+                            <li>What chapters are set in the caves? 33, 67, 72, 76, 91 (=What chapters are set in a specific place?)</li>
                         </ol>
                       </p>
                       <p>
@@ -467,6 +467,29 @@
             <strong>Result:</strong><br/>
              cell = I9<br/>
              chapter = Chapter_06<br/>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="sparql-07" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What place is cell H8?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            <br/><br/>
+            SELECT ?place_label
+            	&nbsp;&nbsp;WHERE {
+            		&nbsp;&nbsp;&nbsp;&nbsp;lawo:H8 lawo:hasPlace ?place .
+            		&nbsp;&nbsp;&nbsp;&nbsp;?place rdfs:label ?place_label .
+            	&nbsp;&nbsp;}
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+             place_label = "Winckler"
           </div>
         </div>
       </div>
