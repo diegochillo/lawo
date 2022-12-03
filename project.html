@@ -281,8 +281,29 @@
 
 
                       <h3>Elements</h3>
+                      <p><strong>Classes:</strong></p>
+                      <ul>
+                        <li>Constraint</li>
+                      </ul>
+                      <br/>
+
+                      <p><strong>Object Properties:</strong></p>
+                      <ul>
+                        <li>hasConstraint</li>
+                        <li>belongingToChapter</li>
+                      </ul>
+                      <br/>
+                      <p><strong>Data Properties:</strong></p>
 
                       <h3>Generic Use Cases</h3>
+
+                      <p>For this step we identified the ODP <strong>“List”</strong> from ontologydesignpatterns.org:<br/>
+                      <a href="http://ontologydesignpatterns.org/wiki/Submissions:List">http://ontologydesignpatterns.org/wiki/Submissions:List</a></p>
+
+                      <p>Initially, we defined each constraint as a class, and each value as a named individual of that class. Then, using the “List” ODP, we converted each constraint into an individual of the class “List” and connected the related values with the object properties “itemOf”, “firstItemOf”, “lastItemOf”.</p>
+                      <p>The "list of lists", that is the list of constraints (the content of the first column of the Cahier des Charges), cannot be defined as a list itself, because a list item cannot be at the same time a list, given the explicit disjunction of the two classes in the "List" ODP.
+
+
 
                       <h3>Unit Tests</h3>
                       <div>
@@ -670,5 +691,7 @@
 
 
 
-   </body>
+   </body></p>
+                      <p>For the functioning of the machine, we need that each value of the constraints is a singular named individual. This kind of usage of literals as individuals resembles theofunctioning of the “Literal Reification” ODP, that “promotes any literal as ‘first class object’ in OWL by reifying it as a proper individual of the class”.</p>
+
 </html>
