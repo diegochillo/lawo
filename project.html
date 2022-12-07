@@ -327,16 +327,17 @@
                         <ol>
                           <li>What is the value of constraint “époque” for chapter 8? (18ème) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-13">SPARQL Query</a></li>
                           <li>What is the value of constraint “végétal” for chapter 70? (fleurs séchés) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-14">SPARQL Query</a></li>
-                          <li>What chapters have value “amour” in the “sentiments” constraint? (8, 17, 34, 40, 59, 66, 82, 85, 87, 91)</li>
+                          <li>What chapters have value “amour” in the “sentiments” constraint? (8, 17, 34, 40, 59, 66, 82, 85, 87, 91) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-15">SPARQL Query</a></li>
                           <li>What constraints are defined for chapter 76?
                             <ul>
-                              <li>1A Position = couché sur le dos</li>
+                              <li>(1A Position = couché sur le dos</li>
                               <li>1a activité = lire, écrire</li>
                               <li>1B citation 1 = Verne</li>
                               <li>1b citation 2 = Calvino</li>
-                              <li>...</li>
+                              <li>...)</li>
                             </ul>
                           </li>
+                          <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-16">SPARQL Query</a>
                           <li>What’s the value of constraint “couleurs” for chapter 92? (vert)</li>
                         </ol>
                         <br/>
@@ -868,6 +869,120 @@
       </div>
 
 
+
+      <div id="sparql-15" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What chapters have value “amour” in the “sentiments” constraint?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br/>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX bag: &lt;http://www.ontologydesignpatterns.org/cp/owl/bag.owl#&gt;<br/>
+            <br/>
+            SELECT ?chapnum<br/>
+            &nbsp;&nbsp;WHERE {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?const a lawo:Constraint ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rdfs:label "sentiments" .<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?constvalue a lawo:ConstraintValue ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bag:itemOf ?const ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rdfs:label "amour" .<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?chap a lawo:Chapter ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:hasConstraintValue ?constvalue ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:ChapterNumber ?chapnum .<br/>
+            &nbsp;&nbsp;}<br/>
+            ORDER BY ?chapnum<br/>
+            <br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+            "8"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "17"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "34"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "40"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "59"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "66"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "82"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "85"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "87"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            "91"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;<br/>
+            <br/>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div id="sparql-16" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What constraints are defined for chapter 76?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br/>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX bag: &lt;http://www.ontologydesignpatterns.org/cp/owl/bag.owl#&gt;<br/>
+            <br/>
+            SELECT ?const ?constlabel ?constvallabel<br/>
+            &nbsp;&nbsp;WHERE {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?chap a lawo:Chapter ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:ChapterNumber 76 ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:hasConstraintValue ?constval .<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?constval a lawo:ConstraintValue ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bag:itemOf ?const ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rdfs:label ?constvallabel .<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?const rdfs:label ?constlabel .<br/>
+            &nbsp;&nbsp;}<br/>
+            ORDER BY ?const<br/>
+            <br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+            0A	"végétal" =	"fleurs"<br/>
+            0B	"manque" = "4"<br/>
+            0a	"bibelots"	= "cuivre, étain"<br/>
+            0b	"faux" =	"1"<br/>
+            1A	"position" =	"couché sur le dos"<br/>
+            1B	"citation 1" =	"Verne"<br/>
+            1C	"couple 1" =	"Belle"<br/>
+            1a	"activité" =	"lire, écrire"<br/>
+            1b	"citation 2" =	"Calvino"<br/>
+            1c	"couple 2" =	"pâturage"<br/>
+            2A	"nombre personnes" =	"02.00.00"<br/>
+            2B	"3è secteur" =	"prospectus pharmacie"<br/>
+            2a	"rôle" =	"domestique"<br/>
+            2b	"ressort ?" =	"établir une filiation"<br/>
+            3A	"murs" =	"boiseries"<br/>
+            3B	"époque" =	"moyen-age"<br/>
+            3a	"sols" =	"moquette"<br/>
+            3b	"lieu" =	"Etats-Unis"<br/>
+            4A	"style" =	"Napoléon III"<br/>
+            4B	"longueur" =	"4 pages"<br/>
+            4a	"meubles" =	"chaise"<br/>
+            4b	"divers" =	"argents (billets)"<br/>
+            5A	"age et sexe" =	"homme 35-60"<br/>
+            5B	"vêtement" =	"chandail…"<br/>
+            5a	"animaux" =	"rat, souris"<br/>
+            5b	"tissus (nature)" =	"à carreaux"<br/>
+            6A	"tissus (matière)" =	"flanelle ou feutre"<br/>
+            6B	"accessoires" =	"cravate, foulard"<br/>
+            6a	"couleurs" =	"gris"<br/>
+            6b	"bijoux" =	"montre"<br/>
+            7A	"lectures" =	"3ème secteur"<br/>
+            7B	"tableaux" =	"Les époux Arnolfini (Jan Van Eyck)"<br/>
+            7a	"musiques" =	"ancienne"<br/>
+            7b	"livre" =	"Conversions (Harry Mathews)"<br/>
+            8A	"boissons" =	"infusion"<br/>
+            8B	"petit meuble" =	"lampes, chandeliers"<br/>
+            8a	"nourriture" =	"oeufs, crudités, salades"<br/>
+            8b	"jeux" =	"mots croisés"<br/>
+            9A	"sentiments" =	"ambition"<br/>
+            9B	"surface" =	"étoiles"<br/>
+            9a	"peintures" =	"cartes postales"<br/>
+            9b	"volume" =	"hémisphère"<br/>
+            <br/>
+          </div>
+        </div>
+      </div>
 
 
 
