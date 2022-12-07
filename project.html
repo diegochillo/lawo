@@ -287,8 +287,8 @@
                       <h3>Competency Questions</h3>
                       <div>
                         <ol>
-                          <li>What is the value of constraint “3B époque” for chapter 8? (18ème) <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-13">SPARQL Query</a></li>
-                          <li>What is the value of constraint “0A végétal” for chapter LXX? (fleurs séchés)</li>
+                          <li>What is the value of constraint “époque” for chapter 8? (18ème)</li>
+                          <li>What is the value of constraint “végétal” for chapter LXX? (fleurs séchés)</li>
                           <li>What chapters have value “amour” in the “sentiments” constraint? (8, 17, 34, 40, 59, 66, 82, 85, 87, 91)</li>
                           <li>What constraints are defined for chapter 76?
                             <ul>
@@ -305,12 +305,42 @@
                       </div>
 
 
+                      <h3>Elements</h3>
+                      <p><strong>Classes:</strong></p>
+                      <p>This step doesn't introduce new classes.</p>
+                      <br/>
+
+                      <p><strong>Object Properties:</strong></p>
+                      <ul>
+                        <li>hasConstraintValue</li>
+                      </ul>
+                      <br/>
+
                       <h3>Generic Use Cases</h3>
                       <div>
                         <p>Given the specificity of this process, no generic use case has been identified for this step.</p>
                       </div>
 
 
+                      <h3>Unit Tests</h3>
+                      <div>
+                        <ol>
+                          <li>What is the value of constraint “époque” for chapter 8? (18ème) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-13">SPARQL Query</a></li>
+                          <li>What is the value of constraint “végétal” for chapter 70? (fleurs séchés) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-14">SPARQL Query</a></li>
+                          <li>What chapters have value “amour” in the “sentiments” constraint? (8, 17, 34, 40, 59, 66, 82, 85, 87, 91)</li>
+                          <li>What constraints are defined for chapter 76?
+                            <ul>
+                              <li>1A Position = couché sur le dos</li>
+                              <li>1a activité = lire, écrire</li>
+                              <li>1B citation 1 = Verne</li>
+                              <li>1b citation 2 = Calvino</li>
+                              <li>...</li>
+                            </ul>
+                          </li>
+                          <li>What’s the value of constraint “couleurs” for chapter 92? (vert)</li>
+                        </ol>
+                        <br/>
+                      </div>
 
 
                     </div>
@@ -798,6 +828,34 @@
           	&nbsp;&nbsp;&nbsp;&nbsp;?constvalue bag:itemOf ?const .<br/>
           	&nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:hasConstraintValue ?constvalue ;<br/>
           	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:ChapterNumber 8 .<br/>
+          	&nbsp;&nbsp;&nbsp;&nbsp;?constvalue rdfs:label ?constvaluelabel .<br/>
+          	&nbsp;&nbsp;}<br/>
+            <br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+            constvaluelabel = "18ème"<br/>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="sparql-14" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What is the value of constraint “végétal” for chapter 70?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br/>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX bag: &lt;http://www.ontologydesignpatterns.org/cp/owl/bag.owl#&gt;<br/>
+            <br/>
+            SELECT ?constvaluelabel<br/>
+          	&nbsp;&nbsp;WHERE { <br/>
+          	&nbsp;&nbsp;&nbsp;&nbsp;?const rdfs:label "végétal" .<br/>
+          	&nbsp;&nbsp;&nbsp;&nbsp;?constvalue bag:itemOf ?const .<br/>
+          	&nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:hasConstraintValue ?constvalue ;<br/>
+          	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:ChapterNumber 70 .<br/>
           	&nbsp;&nbsp;&nbsp;&nbsp;?constvalue rdfs:label ?constvaluelabel .<br/>
           	&nbsp;&nbsp;}<br/>
             <br/>
