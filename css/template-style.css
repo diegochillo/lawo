@@ -350,6 +350,10 @@ address p {
 	margin-bottom: 5px;
 }
 
+#article-section li a {
+	color: #C5285A;
+}
+
 figcaption {
 	color:gray;
 	font-size: smaller;
