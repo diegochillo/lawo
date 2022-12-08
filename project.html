@@ -248,7 +248,7 @@
                       <p><strong>Object Properties:</strong></p>
                       <ul>
                         <li>hasConstraint</li>
-                        <li>belongingToChapter</li>
+                        <li>belongsToChapter</li>
                       </ul>
                       <br/>
                       <p><strong>Data Properties:</strong></p>
@@ -338,7 +338,7 @@
                             </ul>
                             (= extract the complete list of constraints for a chapter)<br/>
                             <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-16">SPARQL Query</a><br/><br/>
-                          </li>                          
+                          </li>
                           <li>What are the constraints of the missing cell/chapter? (answer <a href="http://escarbille.free.fr/vme/?chap=90" target="_blank">here</a>)<br/>
                           (= extract the constraint values with less than 10 attributions to chapters)</li>
                           <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-17">SPARQL Query</a>
@@ -1001,7 +1001,7 @@
             SELECT ?constr ?constrlabel ?constrvallabel (count(?chap) as ?cnt) <br/>
             &nbsp;&nbsp;WHERE {<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;?constrval a lawo:ConstraintValue ;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:belongingToChapter ?chap ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:belongsToChapter ?chap ;<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rdfs:label ?constrvallabel ;<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bag:itemOf ?constr .<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;?constr rdfs:label ?constrlabel .<br/>
