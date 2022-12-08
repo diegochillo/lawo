@@ -8408,7 +8408,7 @@ lawo:chapter_99 rdf:type owl:NamedIndividual .
                                                                       lawo:chapter_72 ,
                                                                       lawo:chapter_86 ,
                                                                       lawo:chapter_94 ;
-                                              rdfs:label "5" .
+                                              rdfs:label "+5"^^xsd:string .
 
 
 ###  https://lawo.github.io/lawontology.owl#2A_g
@@ -8427,7 +8427,7 @@ lawo:chapter_99 rdf:type owl:NamedIndividual .
                                                                       lawo:chapter_77 ,
                                                                       lawo:chapter_90 ,
                                                                       lawo:chapter_95 ;
-                                              rdfs:label "01.00.00" .
+                                              rdfs:label "1."^^xsd:string .
 
 
 ###  https://lawo.github.io/lawontology.owl#2A_h
@@ -8446,7 +8446,7 @@ lawo:chapter_99 rdf:type owl:NamedIndividual .
                                                                       lawo:chapter_59 ,
                                                                       lawo:chapter_62 ,
                                                                       lawo:chapter_76 ;
-                                              rdfs:label "02.00.00" .
+                                              rdfs:label "2."^^xsd:string .
 
 
 ###  https://lawo.github.io/lawontology.owl#2A_i
@@ -8465,7 +8465,7 @@ lawo:chapter_99 rdf:type owl:NamedIndividual .
                                                                       lawo:chapter_33 ,
                                                                       lawo:chapter_35 ,
                                                                       lawo:chapter_50 ;
-                                              rdfs:label "03.00.00" .
+                                              rdfs:label "3."^^xsd:string .
 
 
 ###  https://lawo.github.io/lawontology.owl#2A_j

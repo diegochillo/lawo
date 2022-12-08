@@ -325,9 +325,9 @@
                       <h3>Unit Tests</h3>
                       <div>
                         <ol>
-                          <li>What is the value of constraint “époque” for chapter 8? (18ème)<br/>(= extract a single constraint's value for a specific chapter) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-13">SPARQL Query</a></li>
-                          <li>What is the value of constraint “végétal” for chapter 70? (fleurs séchés) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-14">SPARQL Query</a></li>
-                          <li>What chapters have value “amour” in the “sentiments” constraint? (8, 17, 34, 40, 59, 66, 82, 85, 87, 91)<br/>(= extract the list of chapters having the same constraint) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-15">SPARQL Query</a></li>
+                          <li>What is the value of constraint “époque” for chapter 8? (18ème)<br/>(= extract a single constraint's value for a specific chapter) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-13">SPARQL Query</a><br/><br/></li>
+                          <li>What is the value of constraint “végétal” for chapter 70? (fleurs séchés) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-14">SPARQL Query</a><br/><br/></li>
+                          <li>What chapters have value “amour” in the “sentiments” constraint? (8, 17, 34, 40, 59, 66, 82, 85, 87, 91)<br/>(= extract the list of chapters having the same constraint) - <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-15">SPARQL Query</a><br/><br/></li>
                           <li>What constraints are defined for chapter 76?
                             <ul>
                               <li>(1A position = couché sur le dos</li>
@@ -336,10 +336,12 @@
                               <li>1b citation 2 = Calvino</li>
                               <li>...)</li>
                             </ul>
-                            (= extract the complete list of constraints for a chapter)
-                          </li>
-                          <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-16">SPARQL Query</a>
-                          <li>What are the constraints of the missing cell/chapter? (...)</li>
+                            (= extract the complete list of constraints for a chapter)<br/>
+                            <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-16">SPARQL Query</a><br/><br/>
+                          </li>                          
+                          <li>What are the constraints of the missing cell/chapter? (answer <a href="http://escarbille.free.fr/vme/?chap=90" target="_blank">here</a>)<br/>
+                          (= extract the constraint values with less than 10 attributions to chapters)</li>
+                          <a class="sparql-link" data-vbtype="inline" data-maxwidth="750px" href="#sparql-17">SPARQL Query</a>
                         </ol>
                         <br/>
                       </div>
@@ -985,6 +987,78 @@
         </div>
       </div>
 
+
+
+      <div id="sparql-17" style="display:none;">
+        <div class="modalbox">
+          <h3>CQ: What are the constraints of the missing cell/chapter?</h3>
+          <div class="codebox">
+          <code>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br/>
+            PREFIX lawo: &lt;https://lawo.github.io/lawontology.owl#&gt;<br/>
+            PREFIX bag: &lt;http://www.ontologydesignpatterns.org/cp/owl/bag.owl#&gt;<br/>
+            <br/>
+            SELECT ?constr ?constrlabel ?constrvallabel (count(?chap) as ?cnt) <br/>
+            &nbsp;&nbsp;WHERE {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?constrval a lawo:ConstraintValue ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:belongingToChapter ?chap ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rdfs:label ?constrvallabel ;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bag:itemOf ?constr .<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;?constr rdfs:label ?constrlabel .<br/>
+            &nbsp;&nbsp;}<br/>
+            GROUP BY ?constr ?constrlabel ?constrvallabel <br/>
+            HAVING (?cnt&lt;10)<br/>
+            ORDER BY ?cnt ?constr ?constrval<br/>
+            <br/>
+          </code></div>
+          <div class="query-result">
+            <strong>Result:</strong><br/>
+            0A	"végétal" =	"immortelles, chardons, etc…"<br/>
+            0B	"manque" = "5"<br/>
+            0a	"bibelots"	= "acier, alu."<br/>
+            0b	"faux" =	"2"<br/>
+            1A	"position" =	"entrer"<br/>
+            1B	"citation 1" =	"Flaubert"<br/>
+            1C	"couple 1" =	"Faucille"<br/>
+            1a	"activité" =	"érotique"<br/>
+            1b	"citation 2" =	"Rabelais"<br/>
+            1c	"couple 2" =	"Préjugé"<br/>
+            2A	"nombre personnes" =	"5"<br/>
+            2B	"3è secteur" =	"article dictionn., règlements"<br/>
+            2a	"rôle" =	"occupant.."<br/>
+            2b	"ressort ?" =	"créer"<br/>
+            3A	"murs" =	"papier uni ou géométrique"<br/>
+            3B	"époque" =	"l'après-guerre"<br/>
+            3a	"sols" =	"lino"<br/>
+            3b	"lieu" =	"Amérique du Sud"<br/>
+            4A	"style" =	"camping"<br/>
+            4B	"longueur" =	"3 pages"<br/>
+            4a	"meubles" =	"bibliothèque"<br/>
+            4b	"divers" =	"armes"<br/>
+            5A	"age et sexe" =	"vieillard femme"<br/>
+            5B	"vêtement" =	"uniforme"<br/>
+            5a	"animaux" =	"insectes, bestioles"<br/>
+            5b	"tissus (nature)" =	"à fleurs"<br/>
+            6A	"tissus (matière)" =	"soie"<br/>
+            6B	"accessoires" =	"écharpe, cache-col"<br/>
+            6a	"couleurs" =	"blanc"<br/>
+            6b	"bijoux" =	"collier"<br/>
+            7A	"lectures" =	"rapport technique, livre classe"<br/>
+            7B	"tableaux" =	"Le Songe de Ste Ursule (Carpaccio)"<br/>
+            7a	"musiques" =	"pop et folk"<br/>
+            7b	"livre" =	"Ubu (Alfred Jarry)"<br/>
+            8A	"boissons" =	"coca etc…"<br/>
+            8B	"petit meuble" =	"pianos"<br/>
+            8a	"nourriture" =	"poissons et crustacés"<br/>
+            8b	"jeux" =	"dominos"<br/>
+            9A	"sentiments" =	"douleur"<br/>
+            9B	"surface" =	"rectangle"<br/>
+            9a	"peintures" =	"dessin"<br/>
+            9b	"volume" =	"oeuf"<br/>
+            <br/>
+          </div>
+        </div>
+      </div>
 
 
       <script type="text/javascript" src="venobox/venobox.min.js"></script>
