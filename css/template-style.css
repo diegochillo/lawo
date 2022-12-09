@@ -354,6 +354,10 @@ address p {
 	color: #C5285A;
 }
 
+#article-section a {
+	color: #C5285A;
+}
+
 figcaption {
 	color:gray;
 	font-size: smaller;
