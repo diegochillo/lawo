@@ -488,8 +488,9 @@
             <br/>
             SELECT ?place_label<br/>
 	           &nbsp;&nbsp;WHERE {<br/>
-		             &nbsp;&nbsp;&nbsp;&nbsp;lawo:Chapter_01 lawo:hasPlace ?place .<br/>
-		               &nbsp;&nbsp;&nbsp;&nbsp;?place rdfs:label ?place_label .<br/>
+		             &nbsp;&nbsp;&nbsp;&nbsp;lawo:Chapter_01 lawo:hasCell ?cell .<br/>
+                 &nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasPlace ?place .<br/>
+                 &nbsp;&nbsp;&nbsp;&nbsp;?place rdfs:label ?place_label .<br/>
 	                &nbsp;&nbsp;}<br/>
           </code></div>
           <div class="query-result">
@@ -555,9 +556,9 @@
             <br/>
             SELECT ?cell ?chap ?place_label<br/>
               &nbsp;&nbsp;WHERE {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasChapter ?chap .<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:ChapterNumber ?chapnum ;<br/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:hasPlace ?place .<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;?cell lawo:hasChapter ?chap ;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lawo:hasPlace ?place .<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;?chap lawo:ChapterNumber ?chapnum .<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;?place rdfs:label ?place_label .<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;BIND (?chapnum+1 as ?cnpu)<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;OPTIONAL {?nextchap lawo:ChapterNumber ?cnpu . }<br/>
